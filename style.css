@@ -1,56 +1,35 @@
-/* Remove default margins so the room fills the whole screen */
-body, html {
+/* This resets everything to zero */
+* {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #1a1a1a; /* Dark background behind the room */
+    box-sizing: border-box;
 }
 
-/* The Container for your room */
 .room-container {
     position: relative;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
 }
 
-/* This forces every layer to sit at 0,0 and overlap */
-.room-layer {
-    position: absolute;
+/* This forces EVERY image and EVERY link to occupy the exact same space */
+.room-layer, 
+.hotspot, 
+.hotspot img {
+    position: absolute; /* This is the 'stacking' command */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Keeps your pixel art from stretching */
-    image-rendering: pixelated; /* Keeps pixels sharp and 'crunchy' */
+    object-fit: contain; /* Prevents stretching */
+    image-rendering: pixelated; /* Keeps it sharp */
 }
 
-/* The clickable links */
+/* Ensure the background stays in the back and buttons stay on top */
+.room-layer[src="background.png"] {
+    z-index: 1;
+}
+
 .hotspot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    text-decoration: none;
-}
-
-/* INTERACTIVITY: The Barbie-style glow */
-/* We use 'filter' so only the visible pixels in your PNG glow */
-.hotspot img {
-    transition: filter 0.2s, transform 0.2s;
-}
-
-.hotspot:hover img {
-    filter: brightness(1.3) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-    transform: scale(1.01); /* Very slight pop effect */
-}
-.hotspot img {
-    width: 100%;
-    image-rendering: pixelated;
+    z-index: 10; /* Lifts buttons above the background */
 }
