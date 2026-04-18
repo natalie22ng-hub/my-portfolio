@@ -1,29 +1,27 @@
+.room-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.room-bg, .hotspot img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Keeps your pixel art proportions perfect */
+    image-rendering: pixelated;
+}
+
 .hotspot {
     position: absolute;
-    transition: transform 0.2s; /* This makes the "pop" smooth */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Put the buttons on top of the background */
 }
-
-/* Position your Academic button */
-#academic-btn {
-    top: 40%; 
-    left: 20%;
-    width: 10%; /* Adjust this based on how big you want the button to look */
-}
-
-/* Position your Art button */
-#art-btn {
-    top: 60%;
-    left: 70%;
-    width: 12%;
-}
-
-/* Position the Me button */
-#me-btn {
-    top: 30%;
-    left: 50%;
-    width: 8%;
-}
-
 /* Adding that retro hover effect! */
 .hotspot:hover {
     transform: scale(1.1); /* Makes the button slightly bigger when you hover */
