@@ -20,16 +20,13 @@ html, body {
     pointer-events: none;
 }
 .hotspot-img {
-    transition: transform 0.1s ease;
+    transition: transform 0.10s ease, filter 0.10s ease;
     transform-origin: center;
 }
 .hotspot-img.hovered {
-    animation: pulse-breathe 1.5s ease-in-out infinite;
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
-@keyframes pulse-breathe {
-    0%   { transform: scale(1);    }
-    50%  { transform: scale(1.04); }
-    100% { transform: scale(1);    }
 }
 .announcement-bar {
     width: 100%;
