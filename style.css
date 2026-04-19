@@ -83,7 +83,7 @@ img[src="background.png"] {
     display: inline-block;
     white-space: nowrap;
     will-change: transform;
-    animation: marquee-move 15s linear infinite !important;
+    animation: marquee-move 20s linear infinite !important;
 }
 
 @keyframes marquee-move {
