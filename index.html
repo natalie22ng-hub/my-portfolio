@@ -20,6 +20,7 @@
         <img src="art.png"       class="room-layer hotspot-img" data-href="arts.html"      alt="Arts">
         <img src="me.png"        class="room-layer hotspot-img" data-href="me.html"         alt="About Me">
     </div>
+    <div id="custom-cursor"></div>
     <div id="sparkle-cursor"></div>
 
     <script>
@@ -30,26 +31,9 @@
         img.complete ? draw() : img.addEventListener('load', draw);
         return { img, canvas: c, ctx: x };
     });
-// Pop sound generator
-function playPop() {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
 
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(520, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.08);
-
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
-
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.15);
-}
     const sparkle = document.getElementById('sparkle-cursor');
+    const cursor  = document.getElementById('custom-cursor');
 
     function getAlpha(entry, mx, my) {
         const r = entry.img.getBoundingClientRect();
@@ -59,16 +43,39 @@ function playPop() {
         return entry.ctx.getImageData(px, py, 1, 1).data[3];
     }
 
+    function playPop() {
+        const actx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc  = actx.createOscillator();
+        const gain = actx.createGain();
+        osc.connect(gain);
+        gain.connect(actx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, actx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, actx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.3, actx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.15);
+        osc.start(actx.currentTime);
+        osc.stop(actx.currentTime + 0.15);
+    }
+
+    let wasOnButton = false;
+
     document.addEventListener('mousemove', e => {
+        cursor.style.left  = e.clientX + 'px';
+        cursor.style.top   = e.clientY + 'px';
         sparkle.style.left = e.clientX + 'px';
         sparkle.style.top  = e.clientY + 'px';
+
         let onButton = false;
         imgData.forEach(entry => {
             const hit = getAlpha(entry, e.clientX, e.clientY) > 10;
             entry.img.classList.toggle('hovered', hit);
             if (hit) onButton = true;
         });
+
         sparkle.classList.toggle('active', onButton);
+        if (onButton && !wasOnButton) playPop();
+        wasOnButton = onButton;
     });
 
     document.addEventListener('click', e => {
@@ -79,6 +86,28 @@ function playPop() {
             }
         }
     });
+
+    document.addEventListener('touchend', e => {
+        const touch = e.changedTouches[0];
+        for (let i = imgData.length - 1; i >= 0; i--) {
+            if (getAlpha(imgData[i], touch.clientX, touch.clientY) > 10) {
+                window.location.href = imgData[i].img.dataset.href;
+                return;
+            }
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchstart', e => {
+        const touch = e.touches[0];
+        imgData.forEach(entry => {
+            const hit = getAlpha(entry, touch.clientX, touch.clientY) > 10;
+            entry.img.classList.toggle('hovered', hit);
+        });
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+        imgData.forEach(entry => entry.img.classList.remove('hovered'));
+    }, { passive: true });
     </script>
 </body>
 </html>
