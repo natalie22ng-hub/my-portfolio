@@ -27,7 +27,6 @@ html, body {
     transform: scale(1.10);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
-}
 .announcement-bar {
     width: 100%;
     background-color: #ff69b4;
@@ -52,8 +51,17 @@ html, body {
     from { transform: translateX(100vw); }
     to { transform: translateX(-100%); }
 }
-
-/* Sparkle cursor */
+#custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated;
+    background-image: url('cursor.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 #sparkle-cursor {
     position: fixed;
     pointer-events: none;
@@ -69,19 +77,51 @@ html, body {
     animation: sparkle-spin 0.6s linear infinite;
 }
 #sparkle-cursor::before,
-#sparkle-cursor::after
-
+#sparkle-cursor::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 55% 40%, 100% 50%, 55% 60%, 50% 100%, 45% 60%, 0% 50%, 45% 40%);
+}
+#sparkle-cursor::before {
+    background: #ffb7d5;
+}
+#sparkle-cursor::after {
+    background: #fff;
+    transform: rotate(45deg) scale(0.6);
+}
+@keyframes sparkle-spin {
+    0%   { transform: translate(-50%, -50%) rotate(0deg)   scale(1);   }
+    50%  { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1);   }
+}
+#tooltip {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99997;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #fff;
+    background: #ff69b4;
+    border: 2px solid #000;
+    padding: 5px 8px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate(18px, -50%);
+    transition: opacity 0.15s ease;
+}
+#tooltip.visible {
+    opacity: 1;
+}
 @media (max-width: 768px) {
     .room-layer {
         object-fit: cover;
         object-position: center;
     }
-
     .announcement-bar {
         font-size: 7px;
         height: 32px;
     }
-
     .room-container {
         height: calc(100vh - 32px);
         margin-top: 32px;
