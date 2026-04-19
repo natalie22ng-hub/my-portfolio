@@ -28,7 +28,7 @@ html, body {
     pointer-events: none; 
 }
 
-/* 4. The Link Box */
+/* 4. The Link Box — now also full-screen, but transparent to clicks */
 .hotspot {
     position: absolute;
     top: 0;
@@ -36,13 +36,28 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 10;
-    pointer-events: none; /* Clicks pass through the big box */
+    pointer-events: none; /* the box itself is invisible to mouse */
+    display: block;
 }
 
-/* 5. The Interactive Buttons */
-/* This part ensures the background never accidentally glows */
-img[src="background.png"] {
-    pointer-events: none !important;
+/* 5. Only the image pixels catch events */
+.hotspot img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;  /* only actual drawn pixels respond */
+    cursor: pointer;
+    transition: filter 0.1s ease;
+    filter: brightness(1);
+    image-rendering: pixelated;
+    object-fit: contain;
+}
+
+.hotspot img:hover {
+    filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+    z-index: 100;
 }
 
 .hotspot img {
