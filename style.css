@@ -1,84 +1,31 @@
-/* 1. Global Reset */
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; 
-    background-color: #1a1a1a; 
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background-color: #1a1a1a;
 }
-
-/* 2. The Container */
 .room-container {
     position: relative;
     width: 100vw;
-    height: calc(100vh - 40px); /* Subtract bar height */
-    margin-top: 40px; /* Push down so bar doesn't cover top of room */
+    height: calc(100vh - 40px);
+    margin-top: 40px;
 }
-
-/* 3. The Stacking Rule */
 .room-layer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: contain;
     image-rendering: pixelated;
-    pointer-events: none; 
+    pointer-events: none;
 }
-
-/* 4. The Link Box — now also full-screen, but transparent to clicks */
-.hotspot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none; /* the box itself is invisible to mouse */
-    display: block;
-}
-
-/* 5. Only the image pixels catch events */
-.hotspot img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: auto;  /* only actual drawn pixels respond */
-    cursor: pointer;
+.hotspot-img {
     transition: filter 0.1s ease;
-    filter: brightness(1);
-    image-rendering: pixelated;
-    object-fit: contain;
+    cursor: default;
 }
-
-.hotspot img:hover {
-    filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
-    z-index: 100;
-}
-
-.hotspot img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: auto; /* ONLY the drawn pixels catch the mouse */
+.hotspot-img.hovered {
+    filter: brightness(1.4) drop-shadow(0 0 5px rgba(255,255,255,0.4));
     cursor: pointer;
-    transition: filter 0.1s ease;
-    filter: brightness(1); /* FORCE it to be normal by default */
 }
-
-/* The Magic Fix: The glow ONLY triggers when the mouse is physically on the image */
-.hotspot img:hover {
-    filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)) !important;
-    z-index: 100; /* Temporarily brings the hovered item to the absolute front */
-}
-
-/* 6. Announcement Bar */
 .announcement-bar {
     width: 100%;
     background-color: #ff69b4;
@@ -87,22 +34,18 @@ html, body {
     overflow: hidden;
     white-space: nowrap;
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     z-index: 9999;
     display: flex;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
     border-bottom: 3px solid #000;
 }
-
 .scrolling-text {
     display: inline-block;
     white-space: nowrap;
-    will-change: transform;
-    animation: marquee-move 20s linear infinite !important;
+    animation: marquee-move 20s linear infinite;
 }
-
 @keyframes marquee-move {
     from { transform: translateX(100vw); }
     to { transform: translateX(-100%); }
