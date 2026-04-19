@@ -44,6 +44,46 @@ html, body {
     cursor: pointer;
     transition: filter 0.1s ease; /* Snappy glow return */
 }
+.announcement-bar {
+    width: 100%;
+    background-color: #ff69b4; /* Barbie Pink */
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 3px solid #000;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    
+    /* Pixel Font Styling */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px; /* Keep it small for that retro look */
+    text-transform: uppercase;
+    
+    /* This keeps the pixels "crunchy" and not blurry */
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.scrolling-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 12s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+/* Adjust your room container to make space for the bar */
+.room-container {
+    margin-top: 40px; 
+    height: calc(100vh - 40px);
+}
 
 /* The Glow Fix: Trigger on the IMAGE hover, not the HOTSPOT */
 .hotspot img:hover {
