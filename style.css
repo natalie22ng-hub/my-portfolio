@@ -4,6 +4,9 @@ html, body {
     overflow: hidden;
     background-color: #1a1a1a;
 }
+body {
+    cursor: url('cursor.png') 0 0, auto;
+}
 .room-container {
     position: relative;
     width: 100vw;
