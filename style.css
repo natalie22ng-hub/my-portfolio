@@ -1,56 +1,51 @@
-/* 1. Reset everything */
+/* 1. Global Reset */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Stops the page from scrolling */
+    overflow: hidden; /* Stops accidental scrolling */
+    background-color: #1a1a1a; 
 }
 
-/* 2. The Container */
+/* 2. The Container - The anchor for all layers */
 .room-container {
-    position: relative; /* This is the 'anchor' for the stack */
+    position: relative;
     width: 100vw;
     height: 100vh;
 }
 
-/* 3. The Stacking Rule */
+/* 3. The Stacking Rule - Forces images to overlap */
 .room-layer {
-    position: absolute; /* This lifts the image out of the list and stacks it */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Keeps your pixels from stretching */
-    image-rendering: pixelated; /* Keeps it sharp */
+    object-fit: contain; /* Keeps pixel art proportions */
+    image-rendering: pixelated; /* Keeps pixels sharp */
+    pointer-events: none; /* Images start out 'ghost-like' */
 }
 
-/* 4. The Link Rule */
+/* 4. The Link Box - Invisible but covers the screen */
 .hotspot {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10; /* Ensures buttons are on top of the background */
+    z-index: 10;
+    pointer-events: none; /* Clicks pass through the big box */
 }
 
-/* 5. Hover Effect */
+/* 5. The Interactive Buttons */
 .hotspot img {
-    transition: filter 0.2s;
+    pointer-events: auto; /* Only the DRAWN pixels catch the mouse */
+    cursor: pointer;
+    transition: filter 0.1s ease; /* Snappy glow return */
 }
 
-.hotspot:hover img {
-    filter: brightness(1.3);
-}
-
-/* 1. Make the link 'invisible' to the mouse */
-.hotspot {
-    pointer-events: none;
-}
-
-/* 2. Make only the 'ink' of the PNG catch the mouse */
-.hotspot img {
-    pointer-events: auto;
-    cursor: pointer; /* This ensures the 'hand' icon appears only over the object */
+/* The Glow Fix: Trigger on the IMAGE hover, not the HOTSPOT */
+.hotspot img:hover {
+    filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
 }
