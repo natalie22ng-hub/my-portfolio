@@ -4,30 +4,31 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Stops accidental scrolling */
+    overflow: hidden; 
     background-color: #1a1a1a; 
 }
 
-/* 2. The Container - The anchor for all layers */
+/* 2. The Container */
 .room-container {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 40px); /* Subtract bar height */
+    margin-top: 40px; /* Push down so bar doesn't cover top of room */
 }
 
-/* 3. The Stacking Rule - Forces images to overlap */
+/* 3. The Stacking Rule */
 .room-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Keeps pixel art proportions */
-    image-rendering: pixelated; /* Keeps pixels sharp */
-    pointer-events: none; /* Images start out 'ghost-like' */
+    object-fit: contain;
+    image-rendering: pixelated;
+    pointer-events: none; 
 }
 
-/* 4. The Link Box - Invisible but covers the screen */
+/* 4. The Link Box */
 .hotspot {
     position: absolute;
     top: 0;
@@ -35,26 +36,43 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 10;
-    pointer-events: none; /* Clicks pass through the big box */
+    pointer-events: none; 
 }
 
 /* 5. The Interactive Buttons */
-.hotspot img {
-    pointer-events: auto; /* Only the DRAWN pixels catch the mouse */
-    cursor: pointer;
-    transition: filter 0.1s ease; /* Snappy glow return */
+img[src="background.png"] {
+    pointer-events: none !important;
 }
+
+.hotspot img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: auto; 
+    cursor: pointer;
+    transition: filter 0.1s ease;
+    filter: brightness(1);
+    width: 100%; /* Ensure it matches the container */
+    height: 100%;
+}
+
+/* The Glow Fix */
+.hotspot img:hover {
+    filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)) !important;
+}
+
+/* 6. Announcement Bar */
 .announcement-bar {
     width: 100%;
     background-color: #ff69b4;
     color: white;
     height: 40px;
-    overflow: hidden; /* This is vital */
+    overflow: hidden;
     white-space: nowrap;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9999; /* Make sure it stays on top */
+    z-index: 9999;
     display: flex;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -65,17 +83,10 @@ html, body {
     display: inline-block;
     white-space: nowrap;
     will-change: transform;
-    /* This line is the engine—if this is missing or misspelled, it won't move */
     animation: marquee-move 15s linear infinite !important;
 }
 
-/* The Keyframes MUST match the animation name above exactly */
 @keyframes marquee-move {
     from { transform: translateX(100vw); }
     to { transform: translateX(-100%); }
-}
-
-/* The Glow Fix: Trigger on the IMAGE hover, not the HOTSPOT */
-.hotspot img:hover {
-    filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
 }
