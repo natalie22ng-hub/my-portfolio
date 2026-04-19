@@ -30,7 +30,25 @@
         img.complete ? draw() : img.addEventListener('load', draw);
         return { img, canvas: c, ctx: x };
     });
+// Pop sound generator
+function playPop() {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
 
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(520, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.08);
+
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.15);
+}
     const sparkle = document.getElementById('sparkle-cursor');
 
     function getAlpha(entry, mx, my) {
