@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Natalie's World</title>
-    <link rel="icon" type="image/png" href="cursor.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
@@ -16,15 +16,13 @@
     </div>
     <div class="room-container">
         <img src="background.png" class="room-layer" alt="Room Background">
-    <img src="academics.png" class="room-layer hotspot-img" data-href="academics.html" data-label="academics" alt="Academics">
-<img src="art.png"       class="room-layer hotspot-img" data-href="arts.html"      data-label="art"       alt="Arts">
-<img src="me.png"        class="room-layer hotspot-img" data-href="me.html"         data-label="about me"  alt="About Me">
+        <img src="academics.png" class="room-layer hotspot-img" data-href="academics.html" data-label="academics" alt="Academics">
+        <img src="art.png"       class="room-layer hotspot-img" data-href="arts.html"      data-label="art"       alt="Arts">
+        <img src="me.png"        class="room-layer hotspot-img" data-href="me.html"         data-label="about me"  alt="About Me">
     </div>
     <div id="custom-cursor"></div>
     <div id="sparkle-cursor"></div>
-    <div id="custom-cursor"></div>
-<div id="sparkle-cursor"></div>
-<div id="tooltip"></div>
+    <div id="tooltip"></div>
 
     <script>
     const imgData = Array.from(document.querySelectorAll('.hotspot-img')).map(img => {
@@ -37,6 +35,7 @@
 
     const sparkle = document.getElementById('sparkle-cursor');
     const cursor  = document.getElementById('custom-cursor');
+    const tooltip = document.getElementById('tooltip');
 
     function getAlpha(entry, mx, my) {
         const r = entry.img.getBoundingClientRect();
@@ -47,47 +46,34 @@
     }
 
     function playPop() {
-    const actx = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // layer 1 — high bubbly blip
-    const osc1  = actx.createOscillator();
-    const gain1 = actx.createGain();
-    osc1.connect(gain1);
-    gain1.connect(actx.destination);
-    osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(900, actx.currentTime);
-    osc1.frequency.exponentialRampToValueAtTime(600, actx.currentTime + 0.12);
-    gain1.gain.setValueAtTime(0.18, actx.currentTime);
-    gain1.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.12);
-    osc1.start(actx.currentTime);
-    osc1.stop(actx.currentTime + 0.12);
+        const actx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc1 = actx.createOscillator(); const gain1 = actx.createGain();
+        osc1.connect(gain1); gain1.connect(actx.destination);
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(900, actx.currentTime);
+        osc1.frequency.exponentialRampToValueAtTime(600, actx.currentTime + 0.12);
+        gain1.gain.setValueAtTime(0.18, actx.currentTime);
+        gain1.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.12);
+        osc1.start(actx.currentTime); osc1.stop(actx.currentTime + 0.12);
 
-    // layer 2 — soft undertone for roundness
-    const osc2  = actx.createOscillator();
-    const gain2 = actx.createGain();
-    osc2.connect(gain2);
-    gain2.connect(actx.destination);
-    osc2.type = 'sine';
-    osc2.frequency.setValueAtTime(500, actx.currentTime);
-    osc2.frequency.exponentialRampToValueAtTime(280, actx.currentTime + 0.1);
-    gain2.gain.setValueAtTime(0.1, actx.currentTime);
-    gain2.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.1);
-    osc2.start(actx.currentTime);
-    osc2.stop(actx.currentTime + 0.1);
+        const osc2 = actx.createOscillator(); const gain2 = actx.createGain();
+        osc2.connect(gain2); gain2.connect(actx.destination);
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(500, actx.currentTime);
+        osc2.frequency.exponentialRampToValueAtTime(280, actx.currentTime + 0.1);
+        gain2.gain.setValueAtTime(0.1, actx.currentTime);
+        gain2.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.1);
+        osc2.start(actx.currentTime); osc2.stop(actx.currentTime + 0.1);
 
-    // layer 3 — tiny sparkle blip on top
-    const osc3  = actx.createOscillator();
-    const gain3 = actx.createGain();
-    osc3.connect(gain3);
-    gain3.connect(actx.destination);
-    osc3.type = 'triangle';
-    osc3.frequency.setValueAtTime(1400, actx.currentTime);
-    osc3.frequency.exponentialRampToValueAtTime(900, actx.currentTime + 0.07);
-    gain3.gain.setValueAtTime(0.07, actx.currentTime);
-    gain3.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.07);
-    osc3.start(actx.currentTime);
-    osc3.stop(actx.currentTime + 0.07);
-}
+        const osc3 = actx.createOscillator(); const gain3 = actx.createGain();
+        osc3.connect(gain3); gain3.connect(actx.destination);
+        osc3.type = 'triangle';
+        osc3.frequency.setValueAtTime(1400, actx.currentTime);
+        osc3.frequency.exponentialRampToValueAtTime(900, actx.currentTime + 0.07);
+        gain3.gain.setValueAtTime(0.07, actx.currentTime);
+        gain3.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.07);
+        osc3.start(actx.currentTime); osc3.stop(actx.currentTime + 0.07);
+    }
 
     let wasOnButton = false;
 
@@ -96,15 +82,20 @@
         cursor.style.top   = e.clientY + 'px';
         sparkle.style.left = e.clientX + 'px';
         sparkle.style.top  = e.clientY + 'px';
+        tooltip.style.left = e.clientX + 'px';
+        tooltip.style.top  = e.clientY + 'px';
 
         let onButton = false;
+        let label = '';
         imgData.forEach(entry => {
             const hit = getAlpha(entry, e.clientX, e.clientY) > 10;
             entry.img.classList.toggle('hovered', hit);
-            if (hit) onButton = true;
+            if (hit) { onButton = true; label = entry.img.dataset.label; }
         });
 
         sparkle.classList.toggle('active', onButton);
+        tooltip.classList.toggle('visible', onButton);
+        if (onButton) tooltip.textContent = label;
         if (onButton && !wasOnButton) playPop();
         wasOnButton = onButton;
     });
