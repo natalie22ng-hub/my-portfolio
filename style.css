@@ -36,10 +36,11 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 10;
-    pointer-events: none; 
+    pointer-events: none; /* Clicks pass through the big box */
 }
 
 /* 5. The Interactive Buttons */
+/* This part ensures the background never accidentally glows */
 img[src="background.png"] {
     pointer-events: none !important;
 }
@@ -48,17 +49,18 @@ img[src="background.png"] {
     position: absolute;
     top: 0;
     left: 0;
-    pointer-events: auto; 
+    width: 100%;
+    height: 100%;
+    pointer-events: auto; /* ONLY the drawn pixels catch the mouse */
     cursor: pointer;
     transition: filter 0.1s ease;
-    filter: brightness(1);
-    width: 100%; /* Ensure it matches the container */
-    height: 100%;
+    filter: brightness(1); /* FORCE it to be normal by default */
 }
 
-/* The Glow Fix */
+/* The Magic Fix: The glow ONLY triggers when the mouse is physically on the image */
 .hotspot img:hover {
     filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)) !important;
+    z-index: 100; /* Temporarily brings the hovered item to the absolute front */
 }
 
 /* 6. Announcement Bar */
