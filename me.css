@@ -1,10 +1,10 @@
 html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Start 2P', cursive; color: #3a2a4a; }
 
-.announcement-bar { width: 100%; background: #ffb7d5; color: white; height: 40px; overflow: hidden; white-space: nowrap; position: fixed; top: 0; left: 0; z-index: 9999; display: flex; align-items: center; border-bottom: 3px solid #000; font-size: 9px; }
+.announcement-bar { width: 100%; background:  #ff69b4; color: white; height: 40px; overflow: hidden; white-space: nowrap; position: fixed; top: 0; left: 0; z-index: 9999; display: flex; align-items: center; border-bottom: 3px solid #000; font-size: 11px; }
 .scrolling-text { display: inline-block; white-space: nowrap; animation: marquee-move 18s linear infinite; }
 @keyframes marquee-move { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
-.back-btn { display: inline-block; margin: 5rem 2rem 0; font-family: 'Press Start 2P', cursive; font-size: 8px; color: #b06bb0; text-decoration: none; border: 2px solid #b06bb0; padding: 6px 10px; background: #fff; }
+.back-btn { display: inline-block; margin: 5rem 2rem 0; font-family: 'Press Start 2P', cursive; font-size: 12px; color: #b06bb0; text-decoration: none; border: 2px solid #b06bb0; padding: 6px 10px; background: #fff; }
 .back-btn:hover { background: #f5d0f5; }
 
 .me-container { max-width: 700px; margin: 0 auto; padding: 1.5rem; padding-bottom: 4rem; }
@@ -17,7 +17,7 @@ html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Sta
 .section-card.green  { background: #f2faf0; box-shadow: 5px 5px 0 #c0dd97; }
 .section-card.yellow { background: #fffbf0; box-shadow: 5px 5px 0 #fac775; }
 
-.section-label { font-size: 7px; letter-spacing: 2px; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+.section-label { font-size: 10px; letter-spacing: 2px; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
 .section-label .dot { display: inline-block; width: 10px; height: 10px; border: 2px solid #000; }
 .section-label.pink .dot  { background: #ffb7d5; }
 .section-label.blue .dot  { background: #b5d4f4; }
@@ -27,13 +27,13 @@ html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Sta
 .hero-top { display: flex; gap: 1.5rem; align-items: flex-start; }
 .pixel-avatar { width: 72px; height: 72px; border: 3px solid #000; background: #f5d0f5; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
 .hero-name { font-size: 16px; color: #c94fa0; margin-bottom: 0.75rem; line-height: 1.6; }
-.hero-sub { font-size: 7px; color: #888; line-height: 2.2; margin: 0; }
+.hero-sub { font-size: 10px; color: #cf1572; line-height: 2.2; margin: 0; }
 
 .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 0.5rem; }
-.hobby-pill { border: 2px solid #000; padding: 8px 10px; font-size: 7px; background: #fff; line-height: 1.8; }
+.hobby-pill { border: 2px solid #000; padding: 8px 10px; font-size: 10px; background: #fff; line-height: 1.8; }
 
 .skill-row { margin-bottom: 12px; }
-.skill-name { font-size: 7px; margin-bottom: 6px; }
+.skill-name { font-size: 10px; margin-bottom: 6px; }
 .skill-bar-bg { width: 100%; height: 14px; border: 2px solid #000; background: #fff; }
 .skill-bar-fill { height: 100%; background: repeating-linear-gradient(90deg, #7fb3f0 0 8px, #5a9ade 8px 16px); }
 .skill-bar-fill.green  { background: repeating-linear-gradient(90deg, #a0cc70 0 8px, #80b050 8px 16px); }
@@ -41,6 +41,6 @@ html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Sta
 .skill-bar-fill.yellow { background: repeating-linear-gradient(90deg, #f5c870 0 8px, #e0a840 8px 16px); }
 
 .facts-list { list-style: none; padding: 0; margin-top: 0.5rem; }
-.facts-list li { font-size: 7px; line-height: 2.2; padding: 6px 0; border-bottom: 1px solid #e0d0ee; display: flex; gap: 10px; align-items: flex-start; }
+.facts-list li { font-size: 10px; line-height: 2.2; padding: 6px 0; border-bottom: 1px solid #e0d0ee; display: flex; gap: 10px; align-items: flex-start; }
 .facts-list li:last-child { border-bottom: none; }
 .fact-bullet { display: inline-block; width: 8px; height: 8px; background: #c775e0; border: 2px solid #000; flex-shrink: 0; margin-top: 3px; }
