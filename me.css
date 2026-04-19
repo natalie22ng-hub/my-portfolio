@@ -59,21 +59,21 @@ html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Sta
     flex-wrap: wrap;
 }
 .exp-title {
-    font-size: 10px;
+    font-size: 9px;
     color: #ba7517;
 }
 .exp-date {
-    font-size: 9px;
+    font-size: 7px;
     color: #888;
     white-space: nowrap;
 }
 .exp-org {
-    font-size: 9px;
+    font-size: 7px;
     color: #3a2a4a;
     margin-bottom: 3px;
 }
 .exp-location {
-    font-size: 9px;
+    font-size: 7px;
     color: #aaa;
     margin-bottom: 10px;
 }
@@ -83,7 +83,7 @@ html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Sta
     margin: 0;
 }
 .exp-bullets li {
-    font-size: 9px;
+    font-size: 7px;
     line-height: 2.2;
     padding: 4px 0 4px 16px;
     position: relative;
