@@ -19,39 +19,47 @@
         <img src="art.png"       class="room-layer hotspot-img" data-href="arts.html"      alt="Arts">
         <img src="me.png"        class="room-layer hotspot-img" data-href="me.html"         alt="About Me">
     </div>
-    <canvas id="hit-canvas" style="display:none"></canvas>
-   <script>
-const imgData = Array.from(document.querySelectorAll('.hotspot-img')).map(img => {
-    const c = document.createElement('canvas');
-    const x = c.getContext('2d', { willReadFrequently: true });
-    const draw = () => { c.width = img.naturalWidth; c.height = img.naturalHeight; x.drawImage(img, 0, 0); };
-    img.complete ? draw() : img.addEventListener('load', draw);
-    return { img, canvas: c, ctx: x };
-});
+    <div id="sparkle-cursor"></div>
 
-function getAlpha(entry, mx, my) {
-    const r = entry.img.getBoundingClientRect();
-    const px = Math.floor((mx - r.left) * (entry.canvas.width / r.width));
-    const py = Math.floor((my - r.top) * (entry.canvas.height / r.height));
-    if (px < 0 || py < 0 || px >= entry.canvas.width || py >= entry.canvas.height) return 0;
-    return entry.ctx.getImageData(px, py, 1, 1).data[3];
-}
-
-document.addEventListener('mousemove', e => {
-    imgData.forEach(entry => {
-        const hit = getAlpha(entry, e.clientX, e.clientY) > 10;
-        entry.img.classList.toggle('hovered', hit);
+    <script>
+    const imgData = Array.from(document.querySelectorAll('.hotspot-img')).map(img => {
+        const c = document.createElement('canvas');
+        const x = c.getContext('2d', { willReadFrequently: true });
+        const draw = () => { c.width = img.naturalWidth; c.height = img.naturalHeight; x.drawImage(img, 0, 0); };
+        img.complete ? draw() : img.addEventListener('load', draw);
+        return { img, canvas: c, ctx: x };
     });
-});
 
-document.addEventListener('click', e => {
-    for (let i = imgData.length - 1; i >= 0; i--) {
-        if (getAlpha(imgData[i], e.clientX, e.clientY) > 10) {
-            window.location.href = imgData[i].img.dataset.href;
-            return;
-        }
+    const sparkle = document.getElementById('sparkle-cursor');
+
+    function getAlpha(entry, mx, my) {
+        const r = entry.img.getBoundingClientRect();
+        const px = Math.floor((mx - r.left) * (entry.canvas.width / r.width));
+        const py = Math.floor((my - r.top)  * (entry.canvas.height / r.height));
+        if (px < 0 || py < 0 || px >= entry.canvas.width || py >= entry.canvas.height) return 0;
+        return entry.ctx.getImageData(px, py, 1, 1).data[3];
     }
-});
-</script>
+
+    document.addEventListener('mousemove', e => {
+        sparkle.style.left = e.clientX + 'px';
+        sparkle.style.top  = e.clientY + 'px';
+        let onButton = false;
+        imgData.forEach(entry => {
+            const hit = getAlpha(entry, e.clientX, e.clientY) > 10;
+            entry.img.classList.toggle('hovered', hit);
+            if (hit) onButton = true;
+        });
+        sparkle.classList.toggle('active', onButton);
+    });
+
+    document.addEventListener('click', e => {
+        for (let i = imgData.length - 1; i >= 0; i--) {
+            if (getAlpha(imgData[i], e.clientX, e.clientY) > 10) {
+                window.location.href = imgData[i].img.dataset.href;
+                return;
+            }
+        }
+    });
+    </script>
 </body>
 </html>
