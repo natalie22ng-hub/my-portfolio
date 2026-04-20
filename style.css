@@ -113,17 +113,4 @@ html, body {
 #tooltip.visible {
     opacity: 1;
 }
-@media (max-width: 768px) {
-    .room-layer {
-        object-fit: cover;
-        object-position: center;
-    }
-    .announcement-bar {
-        font-size: 7px;
-        height: 32px;
-    }
-    .room-container {
-        height: calc(100vh - 32px);
-        margin-top: 32px;
-    }
-}
+
