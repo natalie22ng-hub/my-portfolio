@@ -4,18 +4,6 @@ html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Sta
 .scrolling-text { display: inline-block; white-space: nowrap; animation: marquee-move 18s linear infinite; }
 @keyframes marquee-move { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
-#custom-cursor {
-    position: fixed;
-    pointer-events: none;
-    z-index: 99998;
-    width: 48px;
-    height: 48px;
-    image-rendering: pixelated;
-    background-image: url('cursor.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
 .back-btn { display: inline-block; margin: 5rem 2rem 0; font-family: 'Press Start 2P', cursive; font-size: 12px; color: #b06bb0; text-decoration: none; border: 2px solid #b06bb0; padding: 6px 10px; background: #fff; }
 .back-btn:hover { background: #f5d0f5; }
 
@@ -120,4 +108,15 @@ html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Sta
     left: 0;
     top: 8px;
     image-rendering: pixelated;
+}
+#custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated;
+    background-image: url('cursor.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
