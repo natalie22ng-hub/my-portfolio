@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalie's World — Art</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="arts.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="announcement-bar">
+        <div class="scrolling-text">✦ NATALIE'S WORLD ✦ ART GALLERY ✦ NATALIE'S WORLD ✦ ART GALLERY ✦</div>
+    </div>
+
+    <a class="back-btn" href="index.html">← BACK</a>
+
+    <div class="art-container">
+        <div class="page-title">art gallery ✦</div>
+        <div class="page-sub">a collection of things i've made</div>
+
+        <div class="filter-bar">
+            <span class="filter-tag active">all</span>
+            <span class="filter-tag">illustration</span>
+            <span class="filter-tag">digital</span>
+            <span class="filter-tag">traditional</span>
+            <span class="filter-tag">pixel art</span>
+        </div>
+
+        <div class="pixel-divider"></div>
+
+        <!-- Copy and paste this block for each artwork! -->
+        <div class="gallery-item" data-type="illustration">
+            <img src="art1.png" class="gallery-img" alt="Artwork Title">
+            <div class="gallery-info">
+                <div class="gallery-name">Artwork Title</div>
+                <div class="gallery-type">illustration</div>
+                <p class="gallery-desc">A short description of this piece — what inspired it, how you made it, or what it means to you.</p>
+                <div class="gallery-year">2025</div>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-type="digital">
+            <img src="art2.png" class="gallery-img" alt="Another Piece">
+            <div class="gallery-info">
+                <div class="gallery-name">Another Piece</div>
+                <div class="gallery-type">digital</div>
+                <p class="gallery-desc">Replace this with your own description. You can write as much or as little as you like!</p>
+                <div class="gallery-year">2024</div>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-type="pixel art">
+            <img src="art3.png" class="gallery-img" alt="Third Artwork">
+            <div class="gallery-info">
+                <div class="gallery-name">Third Artwork</div>
+                <div class="gallery-type">pixel art</div>
+                <p class="gallery-desc">Share the story behind this one. What tools did you use? How long did it take?</p>
+                <div class="gallery-year">2024</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+    const tags = document.querySelectorAll('.filter-tag');
+    const items = document.querySelectorAll('.gallery-item');
+
+    tags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            tags.forEach(t => t.classList.remove('active'));
+            tag.classList.add('active');
+            const filter = tag.textContent.trim();
+            items.forEach(item => {
+                item.style.display = (filter === 'all' || item.dataset.type === filter) ? 'flex' : 'none';
+            });
+        });
+    });
+    </script>
+</body>
+</html>
