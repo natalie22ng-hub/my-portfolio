@@ -104,7 +104,7 @@
     document.addEventListener('click', e => {
         for (let i = imgData.length - 1; i >= 0; i--) {
             if (getAlpha(imgData[i], e.clientX, e.clientY) > 10) {
-                window.location.href = imgData[i].img.dataset.href;
+                window.open = imgData[i].img.dataset.href;
                 return;
             }
         }
@@ -114,7 +114,7 @@
         const touch = e.changedTouches[0];
         for (let i = imgData.length - 1; i >= 0; i--) {
             if (getAlpha(imgData[i], touch.clientX, touch.clientY) > 10) {
-                window.location.href = imgData[i].img.dataset.href;
+                window.open = imgData[i].img.dataset.href;
                 return;
             }
         }
