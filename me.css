@@ -1,4 +1,4 @@
-html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Start 2P', cursive; color: #3a2a4a; }
+html, body { margin: 0; padding: 0; background: #fff9fe; font-family: 'Press Start 2P', cursive; color: #3a2a4a; cursor: none;}
 
 .announcement-bar { width: 100%; background:  #ff69b4; color: white; height: 40px; overflow: hidden; white-space: nowrap; position: fixed; top: 0; left: 0; z-index: 9999; display: flex; align-items: center; border-bottom: 3px solid #000; font-size: 13px; }
 .scrolling-text { display: inline-block; white-space: nowrap; animation: marquee-move 18s linear infinite; }
