@@ -1,0 +1,32 @@
+html, body { margin: 0; padding: 0; background: #f0f4ff; font-family: 'Press Start 2P', cursive; color: #1a2a4a; }
+
+.announcement-bar { width: 100%; background: #7b9ccc; color: white; height: 40px; overflow: hidden; white-space: nowrap; position: fixed; top: 0; left: 0; z-index: 9999; display: flex; align-items: center; border-bottom: 3px solid #000; font-size: 9px; }
+.scrolling-text { display: inline-block; white-space: nowrap; animation: marquee 18s linear infinite; }
+@keyframes marquee { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
+
+.back-btn { display: inline-block; margin: 5rem 2rem 0; font-family: 'Press Start 2P', cursive; font-size: 8px; color: #7b9ccc; text-decoration: none; border: 2px solid #7b9ccc; padding: 6px 10px; background: #fff; }
+.back-btn:hover { background: #dce8f5; }
+
+.art-container { max-width: 720px; margin: 0 auto; padding: 1.5rem; padding-bottom: 4rem; }
+
+.page-title { font-size: 14px; color: #1a2a4a; margin-bottom: 0.5rem; }
+.page-sub { font-family: 'Lora', serif; font-size: 14px; color: #7b9ccc; margin-bottom: 2rem; }
+
+.filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.filter-tag { font-family: 'Press Start 2P', cursive; font-size: 7px; padding: 6px 10px; border: 2px solid #000; background: #fff; color: #1a2a4a; cursor: pointer; transition: background 0.1s; }
+.filter-tag:hover, .filter-tag.active { background: #7b9ccc; color: #fff; }
+
+.pixel-divider { width: 100%; height: 8px; background: repeating-linear-gradient(90deg, #7b9ccc 0 16px, #b5c9e8 16px 32px, #dce8f5 32px 48px, #a8bdd8 48px 64px); border: 2px solid #000; margin: 1.5rem 0 2rem; image-rendering: pixelated; }
+
+.gallery-item { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; border: 3px solid #000; background: #fff; box-shadow: 5px 5px 0 #b5c9e8; padding: 1.2rem; }
+.gallery-img { width: 140px; min-width: 140px; height: 140px; border: 2px solid #000; object-fit: cover; image-rendering: pixelated; background: #dce8f5; flex-shrink: 0; }
+.gallery-info { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.gallery-name { font-size: 9px; color: #1a2a4a; }
+.gallery-type { display: inline-block; font-size: 6px; padding: 4px 8px; background: #dce8f5; border: 2px solid #7b9ccc; color: #1a2a4a; width: fit-content; }
+.gallery-desc { font-family: 'Lora', serif; font-size: 13px; color: #4a6080; line-height: 1.7; margin: 0; }
+.gallery-year { font-size: 7px; color: #aaa; }
+
+@media (max-width: 600px) {
+    .gallery-item { flex-direction: column; }
+    .gallery-img { width: 100%; min-width: unset; height: 200px; }
+}
